@@ -2,6 +2,8 @@ function plan = buildfile
 
 import matlab.buildtool.Task
 import matlab.buildtool.tasks.CodeIssuesTask
+import matlab.buildtool.tasks.PcodeTask
+
 
 % Add the source folder to the path
 addpath("source");
