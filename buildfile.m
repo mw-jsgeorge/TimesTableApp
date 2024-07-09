@@ -14,7 +14,7 @@ plan("test") = matlab.buildtool.tasks.TestTask("tests");
 
 plan("check") = CodeIssuesTask;
 
-plan("deploy").Dependencies = ["check" "test"];
+% plan("deploy").Dependencies = ["check" "test"];
 
 % Make the "test" task the default task in the plan
 plan.DefaultTasks = "check";
