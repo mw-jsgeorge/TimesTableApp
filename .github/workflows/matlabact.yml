@@ -22,6 +22,20 @@ jobs:
         uses: matlab-actions/run-build@v2.4.0
         with:
           tasks: check test 
+      - name: Run tests and generate artifacts
+        uses: matlab-actions/run-tests@v1
+        with:
+          test-results-junit: test-results/results.xml
+          code-coverage-cobertura: code-coverage/coverage.xml
+          source-folder: source
+      - uses: actions/upload-artifact@v2
+        with:
+          name: cc
+          path: code-coverage/coverage.xml 
+      - uses: actions/upload-artifact@v2
+        with:          
+          name: tr
+          path: test-results/results.xml   
           
   deploy:
     name: Generate Deploy Artifacts
@@ -47,17 +61,4 @@ jobs:
           name: app-${{ matrix.os }}
           path: ./*standalone*/*timestable*
           
-      # - name: Run tests and generate artifacts
-      #   uses: matlab-actions/run-tests@v1
-      #   with:
-      #     test-results-junit: test-results/results.xml
-      #     code-coverage-cobertura: code-coverage/coverage.xml
-      #     source-folder: source
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: cc
-      #     path: code-coverage/coverage.xml 
-      # - uses: actions/upload-artifact@v2
-      #   with:          
-      #     name: tr
-      #     path: test-results/results.xml
+
