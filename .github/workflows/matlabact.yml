@@ -21,7 +21,7 @@ jobs:
       - name: Run build
         uses: matlab-actions/run-build@v2.4.0
         with:
-          tasks: check test deploy  
+          tasks: check  
       - name: Run build
         uses: matlab-actions/run-build@v2.4.0
         with:
