@@ -40,7 +40,7 @@ jobs:
       - name: Run build
         uses: matlab-actions/run-build@v2.4.0
         with:
-          tasks: deploy            
+          tasks: pcode deploy            
       - name: Upload artifact
         uses: actions/upload-artifact@v4  
         with:          
