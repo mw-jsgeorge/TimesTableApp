@@ -8,7 +8,7 @@ jobs:
     name: Run MATLAB Tests
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]    
+        os: [ubuntu-latest]    
     runs-on: ${{ matrix.os }}
     steps:
       - name: Check out repository
@@ -36,6 +36,12 @@ jobs:
         with:          
           name: tr
           path: test-results/results.xml   
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+          with:
+            files: |
+              test-results/**/*.xml
           
   deploy:
     name: Generate Deploy Artifacts
