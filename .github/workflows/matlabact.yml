@@ -4,8 +4,8 @@ on:
 env:
   MLM_LICENSE_TOKEN: ${{ secrets.LICTOKEN }}
 jobs:
-  my-job:
-    name: Run MATLAB Tests and Generate Artifacts
+  check_test:
+    name: Run MATLAB Tests
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]    
@@ -21,11 +21,26 @@ jobs:
       - name: Run build
         uses: matlab-actions/run-build@v2.4.0
         with:
-          tasks: check  
+          tasks: check test 
+          
+  deploy:
+    name: Generate Deploy Artifacts
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]    
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install MATLAB
+        uses: matlab-actions/setup-matlab@v2
+        with:
+          products: MATLAB_Compiler         
+          release: R2024a
       - name: Run build
         uses: matlab-actions/run-build@v2.4.0
         with:
-          tasks: test deploy            
+          tasks: deploy            
       - name: Upload artifact
         uses: actions/upload-artifact@v4  
         with:          
