@@ -19,7 +19,7 @@ jobs:
           products: MATLAB_Compiler         
           release: R2024a
       - name: Run build
-        uses: matlab-actions/run-build@v2.4.0
+        uses: matlab-actions/run-build@v2.4.1
         with:
           tasks: check test 
       - name: Run tests and generate artifacts
@@ -54,7 +54,7 @@ jobs:
     name: Generate Deploy Artifacts
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]    
+        os: [ubuntu-latest]    
     runs-on: ${{ matrix.os }}
     steps:
       - name: Check out repository
@@ -65,7 +65,7 @@ jobs:
           products: MATLAB_Compiler         
           release: R2024a
       - name: Run build
-        uses: matlab-actions/run-build@v2.4.0
+        uses: matlab-actions/run-build@v2.4.1
         with:
           tasks: pcode deploy            
       - name: Upload artifact
