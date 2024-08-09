@@ -5,7 +5,7 @@ env:
   MLM_LICENSE_TOKEN: ${{ secrets.LICTOKEN }}
 jobs:
   check_test:
-    name: Run MATLAB Tests
+    name: Run MATLAB Build & Test
     strategy:
       matrix:
         os: [ubuntu-latest]    
