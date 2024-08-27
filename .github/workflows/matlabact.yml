@@ -18,7 +18,7 @@ jobs:
         uses: matlab-actions/setup-matlab@v2
         with:
           products: MATLAB_Compiler       
-          cahce: true
+          cache: true
           release: ${{ matrix.release }}
       - name: Run build
         uses: matlab-actions/run-build@v2
