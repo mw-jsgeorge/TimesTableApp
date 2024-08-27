@@ -8,7 +8,8 @@ jobs:
     name: Run MATLAB Build & Test
     strategy:
       matrix:
-        os: [ubuntu-latest]    
+        os: [ubuntu-latest, windows-latest, macos-14]    
+        release: [R2024a, latest-including-prerelease]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Check out repository
@@ -17,7 +18,7 @@ jobs:
         uses: matlab-actions/setup-matlab@v2
         with:
           products: MATLAB_Compiler         
-          release: latest-including-prerelease
+          release: ${{ matrix.release }}
       - name: Run build
         uses: matlab-actions/run-build@v2.4.1
         with:
@@ -36,21 +37,11 @@ jobs:
         with:          
           name: tr
           path: test-results/results.xml   
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
-        with:
-          files: |
-            test-results/*.xml
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: success() || failure()    # run this step even if previous step failed
-        with:
-          name: MATLAB Test Results            # Name of the check run which will be created
-          path: test-results/*.xml    # Path to test results
-          reporter: java-junit        # Format of test results
           
   deploy:
+    # This job executes only after a successful completion of 'mex-and-unittests' job
+    needs: check_test
+  
     name: Generate Deploy Artifacts
     strategy:
       matrix:
