@@ -20,24 +20,10 @@ jobs:
           products: MATLAB_Compiler       
           cache: true
           release: ${{ matrix.release }}
-      - name: Run build
+      - name: Run build to check code and run unit tests
         uses: matlab-actions/run-build@v2
         with:
           tasks: check test 
-#      - name: Run tests and generate artifacts
-#        uses: matlab-actions/run-tests@v1
-#        with:
-#          test-results-junit: test-results/results.xml
-#          code-coverage-cobertura: code-coverage/coverage.xml
-#          source-folder: source
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: cc
-#          path: code-coverage/coverage.xml 
-#      - uses: actions/upload-artifact@v2
-#        with:          
-#          name: tr
-#          path: test-results/results.xml   
           
   deploy:
     # This job executes only after a successful completion of 'mex-and-unittests' job
@@ -46,7 +32,7 @@ jobs:
     name: Generate Deploy Artifacts
     strategy:
       matrix:
-        os: [ubuntu-latest]    
+        os: [ubuntu-latest, windows-latest]    
     runs-on: ${{ matrix.os }}
     steps:
       - name: Check out repository
