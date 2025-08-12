@@ -3,6 +3,10 @@ on:
   workflow_dispatch
 env:
   MLM_LICENSE_TOKEN: ${{ secrets.LICTOKEN }}
+  # SonarQube connection details
+  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 jobs:
   check_test:
     name: Run MATLAB Build & Test
@@ -51,6 +55,23 @@ jobs:
         with:
           name: matlab-coverage-report
           path: code-coverage/coverage.xml
+
+      - name: Download SonarScanner CLI
+        run: |
+          # Download and unzip SonarScanner CLI (example for Linux runner)
+          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip -O sonar-scanner.zip
+          unzip sonar-scanner.zip
+          mv sonar-scanner-4.8.0.2856-linux sonar-scanner
+          echo "::add-path::$(pwd)/sonar-scanner/bin"
+
+      - name: Run SonarScanner CLI to upload coverage
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=mw-jsgeorge-TimesTableApp \
+            -Dsonar.sources=source \
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.coverage.cobertura.reportPaths=code-coverage/coverage.xml
 
           
   # deploy:
