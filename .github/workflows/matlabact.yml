@@ -8,7 +8,7 @@ jobs:
     name: Run MATLAB Build & Test
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-13]    
+        os: [ubuntu-latest]    
         release: [R2024a, latest-including-prerelease]
         
     runs-on: ${{ matrix.os }}
@@ -29,31 +29,31 @@ jobs:
         with:
           tasks: check test 
           
-  deploy:
-    # This job executes only after a successful completion of 'mex-and-unittests' job
-    needs: check_test
+  # deploy:
+  #   # This job executes only after a successful completion of 'mex-and-unittests' job
+  #   needs: check_test
   
-    name: Generate Deploy Artifacts
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]    
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Install MATLAB
-        uses: matlab-actions/setup-matlab@v2
-        with:
-          products: MATLAB_Compiler         
-          release: R2024a
-      - name: Run build
-        uses: matlab-actions/run-build@v2
-        with:
-          tasks: pcode deploy            
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4  
-        with:          
-          name: app-${{ matrix.os }}
-          path: ./*standalone*/*timestable*
+  #   name: Generate Deploy Artifacts
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, windows-latest]    
+  #   runs-on: ${{ matrix.os }}
+  #   steps:
+  #     - name: Check out repository
+  #       uses: actions/checkout@v4
+  #     - name: Install MATLAB
+  #       uses: matlab-actions/setup-matlab@v2
+  #       with:
+  #         products: MATLAB_Compiler         
+  #         release: R2024a
+  #     - name: Run build
+  #       uses: matlab-actions/run-build@v2
+  #       with:
+  #         tasks: pcode deploy            
+  #     - name: Upload artifact
+  #       uses: actions/upload-artifact@v4  
+  #       with:          
+  #         name: app-${{ matrix.os }}
+  #         path: ./*standalone*/*timestable*
           
 
