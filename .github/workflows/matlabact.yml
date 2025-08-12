@@ -38,14 +38,14 @@ jobs:
           code-coverage-cobertura: code-coverage/coverage.xml
       
       - name: Upload Test Results Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: matlab-test-results
           path: test-results/results.xml
 
       - name: Upload Coverage Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: matlab-coverage-report
