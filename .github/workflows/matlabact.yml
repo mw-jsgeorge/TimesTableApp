@@ -24,10 +24,33 @@ jobs:
           cache: true
           release: ${{ matrix.release }}
           
-      - name: Run build to check code and run unit tests
-        uses: matlab-actions/run-build@v2
+      # - name: Run build to check code and run unit tests
+      #   uses: matlab-actions/run-build@v2
+      #   with:
+      #     tasks: check test 
+
+      - name: Run MATLAB Tests and Generate Coverage
+        uses: matlab-actions/run-tests@v2
         with:
-          tasks: check test 
+          # Output location for JUnit-style test results
+          test-results-junit: test-results/results.xml
+          # Output location for Cobertura coverage report
+          code-coverage-cobertura: code-coverage/coverage.xml
+      
+      - name: Upload Test Results Artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: matlab-test-results
+          path: test-results/results.xml
+
+      - name: Upload Coverage Artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: matlab-coverage-report
+          path: code-coverage/coverage.xml
+
           
   # deploy:
   #   # This job executes only after a successful completion of 'mex-and-unittests' job
