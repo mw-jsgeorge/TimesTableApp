@@ -32,6 +32,7 @@ jobs:
       - name: Run MATLAB Tests and Generate Coverage
         uses: matlab-actions/run-tests@v2
         with:
+          source-folder: source
           # Output location for JUnit-style test results
           test-results-junit: test-results/results.xml
           # Output location for Cobertura coverage report
