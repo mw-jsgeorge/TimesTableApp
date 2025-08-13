@@ -15,7 +15,8 @@ jobs:
         os: [ubuntu-latest]    
         release: [latest-including-prerelease]
         
-    runs-on: ${{ matrix.os }}
+    #runs-on: ${{ matrix.os }}
+    runs-on: self-hosted
     
     steps:
       - name: Check out repository
