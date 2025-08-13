@@ -79,6 +79,7 @@ jobs:
 
       - name: Run SonarScanner CLI to upload coverage
         run: |
+          java -version # Confirm Java 17 is in use
           sonar-scanner \
             -Dsonar.projectKey=mw-jsgeorge-TimesTableApp \
             -Dsonar.sources=source \
