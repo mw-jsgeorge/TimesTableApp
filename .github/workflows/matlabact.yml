@@ -4,7 +4,7 @@ on:
 env:
   MLM_LICENSE_TOKEN: ${{ secrets.LICTOKEN }}
   # SonarQube connection details
-  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  #SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 jobs:
