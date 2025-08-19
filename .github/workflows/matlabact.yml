@@ -67,7 +67,8 @@ jobs:
           args: >
             -Dsonar.organization=mw-jsgeorge
             -Dsonar.projectKey=mw-jsgeorge-TimesTableApp
-            -Dsonar.language=text
+            -Dsonar.language=text  
+            -Dsonar.sources=source
             -Dsonar.inclusions=**/*.m
             -Dsonar.coverageReportPaths=code-coverage/coverage.xml
             -Dsonar.c.file.suffixes=-
