@@ -58,10 +58,11 @@ jobs:
           path: code-coverage/coverage.xml
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v1
+        uses: SonarSource/sonarqube-scan-action@v5
         with:
           projectBaseDir: source
           args: >
+            -Dsonar.organization=mw-jsgeorge
             -Dsonar.projectKey=mw-jsgeorge-TimesTableApp
             -Dsonar.coverage.cobertura.reportPaths=code-coverage/coverage.xml
         env:
