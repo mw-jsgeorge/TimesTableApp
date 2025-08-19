@@ -57,18 +57,19 @@ jobs:
           name: matlab-coverage-report
           path: code-coverage/coverage.xml
 
-      - name: SonarQube Scan
+      - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5
         with:
           projectBaseDir: source
           args: >
             -Dsonar.organization=mw-jsgeorge
             -Dsonar.projectKey=mw-jsgeorge-TimesTableApp
-            -Dsonar.coverage.cobertura.reportPaths=code-coverage/coverage.xml
+            -Dsonar.language=text
+            -Dsonar.inclusions=**/*.m
+            -Dsonar.coverageReportPaths=code-coverage/coverage.xml
             -Dsonar.c.file.suffixes=-
             -Dsonar.cpp.file.suffixes=-
             -Dsonar.objc.file.suffixes=-
-
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           #SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
