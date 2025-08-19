@@ -65,6 +65,10 @@ jobs:
             -Dsonar.organization=mw-jsgeorge
             -Dsonar.projectKey=mw-jsgeorge-TimesTableApp
             -Dsonar.coverage.cobertura.reportPaths=code-coverage/coverage.xml
+            -Dsonar.c.file.suffixes=-
+            -Dsonar.cpp.file.suffixes=-
+            -Dsonar.objc.file.suffixes=-
+
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           #SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
