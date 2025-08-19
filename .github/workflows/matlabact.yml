@@ -70,7 +70,7 @@ jobs:
             -Dsonar.language=text  
             -Dsonar.sources=source
             -Dsonar.inclusions=**/*.m
-            -Dsonar.coverage.jacoco.xmlReportPaths=
+            -Dsonar.coverage.jacoco.xmlReportPaths=""
             -Dsonar.coverage.cobertura.reportPaths=code-coverage/coverage.xml
             -Dsonar.c.file.suffixes=-
             -Dsonar.cpp.file.suffixes=-
