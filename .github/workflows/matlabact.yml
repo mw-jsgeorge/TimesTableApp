@@ -57,6 +57,9 @@ jobs:
           name: matlab-coverage-report
           path: code-coverage/coverage.xml
 
+      - name: Debug Coverage File
+        run: cat source/code-coverage/coverage.xml
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5
         with:
