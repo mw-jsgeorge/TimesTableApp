@@ -58,12 +58,12 @@ jobs:
           path: code-coverage/coverage.xml
 
       - name: Debug Coverage File
-        run: cat source/code-coverage/coverage.xml
+        run: cat code-coverage/coverage.xml
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5
         with:
-          projectBaseDir: source
+          # projectBaseDir: .
           args: >
             -Dsonar.organization=mw-jsgeorge
             -Dsonar.projectKey=mw-jsgeorge-TimesTableApp
