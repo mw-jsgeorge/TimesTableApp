@@ -29,10 +29,10 @@ jobs:
           cache: true
           release: ${{ matrix.release }}
           
-      # - name: Run build to check code and run unit tests
-      #   uses: matlab-actions/run-build@v2
-      #   with:
-      #     tasks: check test 
+      - name: Run build to check code and run unit tests
+        uses: matlab-actions/run-build@v2
+        with:
+          tasks: check test 
 
       - name: Run MATLAB Tests and Generate Coverage
         uses: matlab-actions/run-tests@v2
