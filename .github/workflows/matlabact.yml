@@ -60,23 +60,23 @@ jobs:
       - name: Debug Coverage File
         run: cat code-coverage/coverage.xml
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          # projectBaseDir: .
-          args: >
-            -Dsonar.organization=mw-jsgeorge
-            -Dsonar.projectKey=mw-jsgeorge-TimesTableApp
-            -Dsonar.language=text  
-            -Dsonar.sources=source
-            -Dsonar.inclusions=**/*.m
-            -Dsonar.coverage.jacoco.xmlReportPaths=""
-            -Dsonar.coverage.cobertura.reportPaths=code-coverage/coverage.xml
-            -Dsonar.c.file.suffixes=-
-            -Dsonar.cpp.file.suffixes=-
-            -Dsonar.objc.file.suffixes=-
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      # - name: SonarCloud Scan
+      #   uses: SonarSource/sonarqube-scan-action@v5
+      #   with:
+      #     # projectBaseDir: .
+      #     args: >
+      #       -Dsonar.organization=mw-jsgeorge
+      #       -Dsonar.projectKey=mw-jsgeorge-TimesTableApp
+      #       -Dsonar.language=text  
+      #       -Dsonar.sources=source
+      #       -Dsonar.inclusions=**/*.m
+      #       -Dsonar.coverage.jacoco.xmlReportPaths=""
+      #       -Dsonar.coverage.cobertura.reportPaths=code-coverage/coverage.xml
+      #       -Dsonar.c.file.suffixes=-
+      #       -Dsonar.cpp.file.suffixes=-
+      #       -Dsonar.objc.file.suffixes=-
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           #SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       # - name: Set up JDK 17
       #   uses: actions/setup-java@v3
