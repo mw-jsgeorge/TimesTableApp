@@ -37,15 +37,15 @@ end
 function decisionCoverageTask(~)
     import matlab.unittest.TestSuite
     import matlab.unittest.plugins.CodeCoveragePlugin
-    import matlab.unittest.plugins.codecoverage.CoverageReport
-    import matlab.unittest.plugins.codecoverage.CoverageMetrics
+    import matlab.unittest.plugins.codecoverage.CoberturaFormat
+
     suite = TestSuite.fromFolder("tests", "IncludingSubfolders", true);
     runner = matlab.unittest.TestRunner.withTextOutput;
 
     plugin = CodeCoveragePlugin.forFolder("source", ...
         "IncludingSubfolders", true, ...
-        "Producing", CoverageReport("coverage-report", ...
-            "Metric", CoverageMetrics.Decision));
+        "Producing", CoberturaFormat("coverageReport.xml"), ...
+        "MetricLevel","decision");
 
     runner.addPlugin(plugin);
     runner.run(suite);
