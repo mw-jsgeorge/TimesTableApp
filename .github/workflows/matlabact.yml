@@ -57,6 +57,13 @@ jobs:
           name: matlab-coverage-report
           path: code-coverage/coverage.xml
 
+      - name: Upload Cobertura Coverage Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: matlab-cobertura-coverage-report
+          path: coverageReport.xml
+
       - name: Debug Coverage File
         run: cat code-coverage/coverage.xml
 
