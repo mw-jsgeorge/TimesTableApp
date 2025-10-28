@@ -73,7 +73,11 @@ jobs:
         with:
           path: coverageReport.xml
           minimum_coverage: 60
-          
+
+      - name: Code Coverage Summary Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: coverageReport.xml          
       # - name: SonarCloud Scan
       #   uses: SonarSource/sonarqube-scan-action@v5
       #   with:
