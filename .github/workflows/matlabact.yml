@@ -1,6 +1,7 @@
 name: Run MATLAB Build on GitHub-Hosted Runner 
 on: 
-  workflow_dispatch
+  push:
+    branches: [main]
 env:
   MLM_LICENSE_TOKEN: ${{ secrets.LICTOKEN }}
   # SonarQube connection details
